@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
 from Places.models import Room,Reception,Department,Office,Hospital
 from Tasks.models import Task,Task_record
-fs = FileSystemStorage(location='/media/photos/person')
+fs = FileSystemStorage(location='/media/photos/person/')
 
 
 
@@ -23,7 +23,6 @@ class Nurse(Person):
     department=models.ForeignKey(Department,on_delete=models.CASCADE)
 
 
-
 class Receptionist(Person):
    reception=models.ForeignKey(Reception,on_delete=models.CASCADE)
 
@@ -32,6 +31,8 @@ class Receptionist(Person):
 
 class Patient(Person):
     stay_room=models.ForeignKey(Room,on_delete=models.SET_NULL)
+    check_in=models.DateTimeField()
+    check_out=models.DateTimeField()
 
 
 class Hospital_manager(Person):

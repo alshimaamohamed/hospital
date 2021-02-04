@@ -9,23 +9,23 @@ class Hospital(models.Model):
 
 
 class Building(models.Model):
-    name=models.CharField(max_length=300)
-    hospital=models.ForeignKey(Hospital,on_delete=models.CASCADE)
+    name = models.CharField(max_length=300)
+    hospital = models.ForeignKey(Hospital,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
 class Floor(models.Model):
-    number=models.IntegerField(unique=True)
-    building=models.ForeignKey(Building,on_delete=models.CASCADE)
+    number = models.IntegerField()
+    building = models.ForeignKey(Building,on_delete=models.CASCADE)
 
     def __int__(self):
         return self.number
 
 class Pharmacy(models.Model):
-    name=models.CharField(max_length=300)
-    floor=models.ForeignKey(Floor,on_delete=models.CASCADE)
-    main_anchor=models.OneToOneField(Anchor)
+    name = models.CharField(max_length=300)
+    floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
+    main_anchor = models.ForeignKey(Anchor)
 
     def __str__(self):
         return self.name
@@ -33,8 +33,8 @@ class Pharmacy(models.Model):
 
 class Kitchen(models.Model):
     number = models.IntegerField(unique=True)
-    floor=models.ForeignKey(Floor,on_delete=models.CASCADE)
-    main_anchor=models.OneToOneField(Anchor)
+    floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
+    main_anchor = models.ForeignKey(Anchor)
 
 
     def __int__(self):
@@ -42,9 +42,10 @@ class Kitchen(models.Model):
 
 class Room(models.Model):
     number = models.IntegerField(unique=True)
-    type=models.CharField(max_length=300)
-    floor=models.ForeignKey(Floor,on_delete=models.CASCADE)
-    main_anchor=models.OneToOneField(Anchor)
+    type = models.CharField(max_length=300)
+    floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
+    main_anchor = models.ForeignKey(Anchor)
+    avilibility=models.BooleanField(default=True)
 
 
     def __int__(self):
@@ -52,8 +53,8 @@ class Room(models.Model):
 
 class Scan_lab(models.Model):
     number = models.IntegerField(unique=True)
-    floor=models.ForeignKey(Floor,on_delete=models.CASCADE)
-    main_anchor=models.OneToOneField(Anchor)
+    floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
+    main_anchor = models.ForeignKey(Anchor)
 
 
     def __int__(self):
@@ -61,8 +62,8 @@ class Scan_lab(models.Model):
 
 class Office(models.Model):
     number = models.IntegerField(unique=True)
-    floor=models.ForeignKey(Floor,on_delete=models.CASCADE)
-    main_anchor=models.OneToOneField(Anchor)
+    floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
+    main_anchor = models.ForeignKey(Anchor)
 
 
     def __int__(self):
@@ -72,8 +73,8 @@ class Office(models.Model):
 
 
 class Department(models.Model):
-    name=models.CharField(max_length=300)
-    floor=models.ForeignKey(Floor,on_delete=models.CASCADE)
+    name = models.CharField(max_length=300)
+    floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
 
 
     def __str__(self):
@@ -82,8 +83,8 @@ class Department(models.Model):
 
 class Charging_station(models.Model):
     number = models.IntegerField(unique=True)
-    floor=models.ForeignKey(Floor,on_delete=models.CASCADE)
-    main_anchor=models.OneToOneField(Anchor)
+    floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
+    main_anchor = models.ForeignKey(Anchor)
 
 
     def __int__(self):
@@ -93,7 +94,7 @@ class Charging_station(models.Model):
 
 class Bio_labs(models.Model):
     number = models.IntegerField(unique=True)
-    floor=models.ForeignKey(Floor,on_delete=models.CASCADE)
+    floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
 
     def __int__(self):
         return self.number
@@ -101,7 +102,7 @@ class Bio_labs(models.Model):
 
 class Reception(models.Model):
     name = models.CharField(max_length=300)
-    floor=models.OneToOneField(Floor,on_delete=models.CASCADE)
+    floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
