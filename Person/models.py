@@ -11,8 +11,7 @@ class Person(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(storage=fs)
     acessed_tasks=models.ManyToManyField(Task)
-    class Meta:
-        abstract = True
+
 
 
 class Doctor(Person):
@@ -30,14 +29,14 @@ class Receptionist(Person):
 
 
 class Patient(Person):
-    stay_room=models.ForeignKey(Room,on_delete=models.SET_NULL)
+    stay_room=models.ForeignKey(Room,on_delete=models.CASCADE)
     check_in=models.DateTimeField()
     check_out=models.DateTimeField()
 
 
 class Hospital_manager(Person):
-   manager_office=models.OneToOneField(Office)
-   manages=models.OneToOneField(Hospital)
+   manager_office=models.OneToOneField(Office,on_delete=models.CASCADE)
+   manages=models.OneToOneField(Hospital,on_delete=models.CASCADE)
 
 
 class Department_manager(Person):

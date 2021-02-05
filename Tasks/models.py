@@ -1,5 +1,5 @@
 from django.db import models
-from Person.models import Person
+#from Person.models import Person
 
 
 
@@ -23,11 +23,11 @@ class Task(models.Model):
 
 class Task_record(models.Model):
     STATUS = (
-        ('queued'),
-        ('running'),
-        ('done'),
-        ('failed'),
-        ('rejected'),
+        ('queued','queued'),
+        ('running','running'),
+        ('done','done'),
+        ('failed','failed'),
+        ('rejected','rejected'),
 
     )
     Task_name = models.CharField(max_length=300, unique=True)   #to know arguments
@@ -43,7 +43,7 @@ class Task_record(models.Model):
     arg5 = models.CharField(null=True, max_length=50)
     arg6 = models.CharField(null=True, max_length=50)
 
-    person=models.ForeignKey(Person,on_delete=models.SET_NULL)
+    person=models.ForeignKey(to="Person.Person",on_delete=models.SET_NULL,null=True)
 
 
 

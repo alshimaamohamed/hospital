@@ -1,5 +1,5 @@
 from django.db import models
-from Items.models import Anchor,Meal,Medicine
+#from Items.models import Anchor,Meal,Medicine
 
 class Hospital(models.Model):
     name=models.CharField(max_length=300,unique=True)
@@ -25,7 +25,7 @@ class Floor(models.Model):
 class Pharmacy(models.Model):
     name = models.CharField(max_length=300)
     floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
-    main_anchor = models.ForeignKey(Anchor)
+    main_anchor = models.ForeignKey(null=True,to='Items.Anchor',on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -34,18 +34,26 @@ class Pharmacy(models.Model):
 class Kitchen(models.Model):
     number = models.IntegerField(unique=True)
     floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
-    main_anchor = models.ForeignKey(Anchor)
+    main_anchor = models.ForeignKey(to='Items.Meal',on_delete=models.CASCADE)
 
 
     def __int__(self):
         return self.number
 
 class Room(models.Model):
+    TYPE = (
+        ('single','single'),
+        ('double','double'),
+        ('triple','triple')
+
+    )
     number = models.IntegerField(unique=True)
-    type = models.CharField(max_length=300)
+    type = models.CharField( max_length=32,
+        choices=TYPE)
     floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
-    main_anchor = models.ForeignKey(Anchor)
+    main_anchor = models.ForeignKey(null=True,to='Items.Anchor',on_delete=models.CASCADE)
     avilibility=models.BooleanField(default=True)
+
 
 
     def __int__(self):
@@ -54,7 +62,7 @@ class Room(models.Model):
 class Scan_lab(models.Model):
     number = models.IntegerField(unique=True)
     floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
-    main_anchor = models.ForeignKey(Anchor)
+    main_anchor = models.ForeignKey(null=True,to='Items.Anchor',on_delete=models.CASCADE)
 
 
     def __int__(self):
@@ -63,7 +71,7 @@ class Scan_lab(models.Model):
 class Office(models.Model):
     number = models.IntegerField(unique=True)
     floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
-    main_anchor = models.ForeignKey(Anchor)
+    main_anchor = models.ForeignKey(null=True,to='Items.Anchor',on_delete=models.CASCADE)
 
 
     def __int__(self):
@@ -84,7 +92,7 @@ class Department(models.Model):
 class Charging_station(models.Model):
     number = models.IntegerField(unique=True)
     floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
-    main_anchor = models.ForeignKey(Anchor)
+    main_anchor = models.ForeignKey(null=True,to='Items.Anchor',on_delete=models.CASCADE)
 
 
     def __int__(self):
