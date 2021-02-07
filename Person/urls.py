@@ -10,6 +10,8 @@ router.register('ReceptionistAPI', views.ReceptionistView)
 router.register('PatientAPI', views.PatientView)
 router.register('HospitalManagerAPI', views.HospitalManagerView)
 router.register('DepartmentManagerAPI', views.DepartmentManagerView)
+router.register('PatientMateAPI', views.PatientMateView)
+router.register('MeasurementsAPI', views.MeasurementsView)
 
 urlpatterns = [
     path('', include(router.urls))

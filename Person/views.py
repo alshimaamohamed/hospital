@@ -63,3 +63,20 @@ class DepartmentManagerView(viewsets.ModelViewSet):
 
     queryset = models.Department_manager.objects.all()
     serializer_class = serializers.DepartmentManagerSerializer
+
+
+class MeasurementsView(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    queryset = models.Mesurements.objects.all()
+    serializer_class = serializers.MeasurementSerializer
+
+
+class PatientMateView(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    queryset = models.Patient_Mate.objects.all()
+    serializer_class = serializers.PatientMateSerializer
+

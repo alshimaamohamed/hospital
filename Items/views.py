@@ -6,7 +6,6 @@ from rest_framework.permissions import IsAuthenticated
 
 from . import serializers, models
 
-# Create your views here.
 
 
 class AnchorView(viewsets.ModelViewSet):
@@ -47,3 +46,18 @@ class MedicineView(viewsets.ModelViewSet):
 
     queryset = models.Medicine.objects.all()
     serializer_class = serializers.MedicineSerializer
+
+
+class MedicineView(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    queryset = models.Medicine.objects.all()
+    serializer_class = serializers.MedicineSerializer
+
+class RobotView(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    queryset = models.Robot.objects.all()
+    serializer_class = serializers.RobotSerializer

@@ -6,18 +6,17 @@ class TaskTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Task_type
-        fields = ('__all__',)
-
+        fields = '__all__'
 
 class TaskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Task
-        fields = ('__all__',)
+        fields = '__all__'
 
 
 class TaskRecordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Task_record
-        fields = ('__all__',)
+        fields = '__all__'

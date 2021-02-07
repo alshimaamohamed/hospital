@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.files.storage import FileSystemStorage
-from Places.models import Kitchen,Floor,Pharmacy
+from Places.models import Kitchen,Floor,Pharmacy,Charging_station
+
 fs = FileSystemStorage(location='/media/photos/medicine')
 
 class Anchor(models.Model):
@@ -50,3 +51,7 @@ class Medicine(models.Model):
         return self.name
 
 
+class Robot(models.Model):
+
+    status=models.CharField(max_length=100)
+    base_location=models.OneToOneField(Charging_station,on_delete=models.CASCADE)

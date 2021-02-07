@@ -42,6 +42,7 @@ class Task_record(models.Model):
     arg4 = models.CharField(null=True, max_length=50)
     arg5 = models.CharField(null=True, max_length=50)
     arg6 = models.CharField(null=True, max_length=50)
+    robot=models.ForeignKey(to="Items.Robot",on_delete=models.CASCADE)
 
     person=models.ForeignKey(to="Person.Person",on_delete=models.SET_NULL,null=True)
 

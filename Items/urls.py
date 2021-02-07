@@ -8,6 +8,8 @@ router.register('EdgeAPI', views.EdgeView)
 router.register('MealAPI', views.MealView)
 router.register('FoodItemAPI', views.FoodItemView)
 router.register('MedicineAPI', views.MedicineView)
+router.register('RobotAPI', views.RobotView)
+
 
 urlpatterns = [
     path('', include(router.urls))
